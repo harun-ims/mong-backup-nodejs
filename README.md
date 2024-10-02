@@ -23,14 +23,14 @@ Before running the scripts, ensure you have the following installed:
 2. Copy the .env.example file and create file named .env.dev
 
    ```bash
-       MONGO_URI=mongodb://localhost:27017
-       DB_NAME=database_2
+    MONGO_URI=mongodb://localhost:27017
+    DB_NAME=database_2
    ```
 
 3. Install dependencies
 
    ```bash
-       yarn
+    yarn
    ```
 
 4. Backup Database for development
