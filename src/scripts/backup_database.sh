@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# MongoDB connection details
-MONGO_URI="mongodb://localhost:27017"
-DB_NAME="database_2"
+# MongoDB connection details from environment variables with fallback
+MONGO_URI="${MONGO_URI:-mongodb://localhost:27017}" 
+DB_NAME="${DB_NAME:-db}"       
+
+# Determine the directory of the script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Backup directory and file
 BACKUP_DIR="mongo_backup"
-BACKUP_FILE="mongo_backup.tar.gz"
+BACKUP_FILE="$SCRIPT_DIR/mongo_backup.tar.gz"
 
 # Create backup directory if not exists
 mkdir -p "$BACKUP_DIR"
@@ -35,8 +38,3 @@ fi
 rm -rf "$BACKUP_DIR"
 
 echo "Backup stored in $BACKUP_FILE."
-
-# Make the script executable:
-# chmod +x backup_database.sh
-# Run the script:
-# ./backup_database.sh

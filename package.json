@@ -4,17 +4,20 @@
   "description": "Mongodb database backup and restore script",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts"
+    "backup:dev": "env-cmd -f ./.env.dev ts-node ./src/backup.ts",
+    "restore:dev": "env-cmd -f ./.env.dev ts-node ./src/restore.ts"
   },
   "repository": "https://github.com/harun-ims/mongo-backup-nodejs",
   "author": "Md. Harun Or Rashid",
   "license": "MIT",
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "shelljs": "^0.8.5"
+    "@types/node": "^22.7.4",
+    "dotenv": "^16.4.5"
   }
 }

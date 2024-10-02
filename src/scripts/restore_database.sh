@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# MongoDB connection details
-MONGO_URI="mongodb://localhost:27017"
-DB_NAME="database_2"
-BACKUP_FILE="mongo_backup.tar.gz"
+# MongoDB connection details from environment variables with fallback
+MONGO_URI="${MONGO_URI:-mongodb://localhost:27017}" 
+DB_NAME="${DB_NAME:-db}"                    
+
+# Determine the directory of the script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Backup file and directory
+BACKUP_FILE="$SCRIPT_DIR/mongo_backup.tar.gz"
 BACKUP_DIR="mongo_backup"
 
 # Step 1: Drop the existing database
@@ -47,8 +52,3 @@ rm -rf "$BACKUP_DIR"
 rm -f "$BACKUP_FILE"
 
 echo "Database restore completed."
-
-# Make the script executable:
-# chmod +x restore_database.sh
-# Run the script:
-# ./restore_database.sh
